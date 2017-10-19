@@ -359,14 +359,15 @@ class DayColumn extends React.Component {
 function minToDate(min, date){
   var dt = date
    , totalMins = dates.diff(dates.startOf(date, 'day'), date, 'minutes');
+  const offset = dt.getTime() + min * 60 * 1000;//, 'ms'//.hour(0).minute(totalMins + min).second(0).millisecond(0);
 
     let offsetDate = new Date(offset);
     let result = new Date(date);
     result = dates.hours(result, 0);
-    result = dates.minutes(result, totalMins + offsetDate.getHours() * 60 + offsetDate.getMinutes());
+    result = dates.minutes(result, offsetDate.getHours() * 60 + offsetDate.getMinutes());
     result = dates.seconds(result, 0);
     result = dates.milliseconds(result, 0);
-    console.log(result);
+    // console.log(result);
     return result;
 }
 
